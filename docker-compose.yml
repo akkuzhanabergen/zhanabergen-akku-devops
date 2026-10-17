@@ -1,0 +1,12 @@
+services:
+  student-app:
+    build: .
+    image: zhanabergen-akku-devops
+    container_name: zhanabergen-akku-container
+    environment:
+      STUDENT_NAME: Akku
+      STUDENT_SURNAME: Zhanabergen
+      STUDENT_GROUP: IT2-2309
+      STUDENT_ID: "37667"
+    ports:
+      - "8002:8000"
