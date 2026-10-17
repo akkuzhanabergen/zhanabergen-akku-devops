@@ -2,6 +2,8 @@
 
 Student: Akku Zhanabergen, IT2-2309, ID 37667. Course: DevOps.
 
+For a MacBook Air M1, follow [the local setup guide](MAC_M1_SETUP.md). For the required screen recording, use [the under-10-minute video guide](VIDEO_GUIDE_UNDER_10_MIN.md).
+
 This repository demonstrates Linux file operations, Git and GitHub, a Docker application, Docker Compose, and a five-stage Jenkins Pipeline. The application displays student data supplied by environment variables, with the student's data as defaults.
 
 ## Project structure
