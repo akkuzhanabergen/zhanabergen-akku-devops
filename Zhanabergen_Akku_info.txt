@@ -1,0 +1,5 @@
+Name: Akku
+Surname: Zhanabergen
+Group: IT2-2309
+Student ID: 37667
+Course: DevOps
