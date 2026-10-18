@@ -1,5 +1,3 @@
-Жаным журегым люблю тебя
-
 # Лабораторная DevOps на MacBook Air 13″ с Apple M1
 
 Это инструкция для **Zhanabergen Akku, IT2-2309, Student ID 37667**. В результате на Mac будут: копия проекта в `~/devops/zhanabergen_akku`, отдельная Linux-среда, Docker-приложение, Jenkins Job `Zhanabergen_Akku_DevOps` и успешный Pipeline. Репозиторий уже публичный: <https://github.com/akkuzhanabergen/zhanabergen-akku-devops>. PDF-отчёт лежит в корне репозитория. Видео записывается отдельно по файлу `VIDEO_GUIDE_UNDER_10_MIN.md`.
