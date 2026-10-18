@@ -1,8 +1,6 @@
 # Лабораторная DevOps на MacBook Air 13″ с Apple M1
 
-Это инструкция для **Zhanabergen Akku, IT2-2309, Student ID 37667**. В результате на Mac будут: копия проекта в `~/devops/zhanabergen_akku`, отдельная Linux-среда, Docker-приложение, Jenkins Job `Zhanabergen_Akku_DevOps` и успешный Pipeline. Репозиторий уже публичный: <https://github.com/akkuzhanabergen/zhanabergen-akku-devops>. PDF-отчёт лежит в корне репозитория. Видео записывается отдельно по файлу `VIDEO_GUIDE_UNDER_10_MIN.md`.
-
-Команды ниже выполняются в обычном приложении **Терминал** на Mac, если отдельно не написано «внутри Linux». Не вводи пароль GitHub в команды и не показывай пароль Jenkins в видео.
+Локальный запуск Linux-контейнера, приложения и Jenkins. Команды выполняются в терминале macOS; команды внутри Linux отмечены отдельно. План записи: [VIDEO_GUIDE_UNDER_10_MIN.md](VIDEO_GUIDE_UNDER_10_MIN.md).
 
 ## 1. Проверь Mac и установи три программы
 
@@ -56,7 +54,7 @@ git branch -a
 cat Zhanabergen_Akku_info.txt
 ```
 
-`git status` должен показать чистую ветку `main`; среди веток должна быть `remotes/origin/development`. Файл информации должен содержать `Akku`, `Zhanabergen`, `IT2-2309`, `37667` и `DevOps`. Для клонирования публичного репозитория вход в GitHub не нужен.
+`git status` и `git branch -a` показывают состояние рабочей копии и доступные ветки. Файл информации должен содержать `Akku`, `Zhanabergen`, `IT2-2309`, `37667` и `DevOps`. Для клонирования публичного репозитория вход в GitHub не нужен.
 
 Если будешь делать новые коммиты **на этом Mac**, задай свою личность только в этом проекте:
 
@@ -67,7 +65,7 @@ git config --local user.email 'akkuwka145@gmail.com'
 
 ## 3. Подготовь отдельный Linux-контейнер
 
-Это настоящая Linux-среда внутри Docker. Она нужна для Linux-команд задания; файловая система macOS сама по себе не Linux.
+Linux-команды лабораторной выполняются в Alpine-контейнере.
 
 ```sh
 docker run -d --name zhanabergen-akku-linux alpine:3.21 sleep infinity
@@ -127,7 +125,7 @@ curl -i http://127.0.0.1:8002/health
 docker compose down
 ```
 
-`docker compose down` остановит приложение Compose. Это нормально: Jenkins в следующем разделе снова запустит тот же учебный контейнер. Не запускай Compose и Jenkins-сборку одновременно — они используют одинаковые имя контейнера и порт.
+`docker compose down` остановит приложение Compose. Jenkins затем запустит контейнер приложения. Не запускай Compose и Jenkins-сборку одновременно — они используют одинаковые имя контейнера и порт.
 
 ## 5. Установи Jenkins локально в Docker
 
@@ -150,7 +148,7 @@ docker ps --filter name=zhanabergen-akku-jenkins
 docker exec zhanabergen-akku-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-Вставь его на странице Unlock Jenkins. Выбери **Install suggested plugins**, затем создай собственного администратора и сохрани пароль у себя. Пароль не нужно присылать и нельзя показывать в видео. Jenkins доступен только с этого Mac через `127.0.0.1:8081`; GitHub-репозиторий доступен отдельно через интернет.
+Вставь его на странице Unlock Jenkins. Выбери **Install suggested plugins**, затем создай собственного администратора и сохрани пароль у себя. Пароль не должен попадать в запись экрана. Jenkins доступен только с этого Mac через `127.0.0.1:8081`; GitHub-репозиторий доступен отдельно через интернет.
 
 Создай Job в веб-интерфейсе:
 
@@ -168,7 +166,7 @@ docker images zhanabergen-akku-devops
 curl -i http://127.0.0.1:8002/health
 ```
 
-Это новая локальная сборка на Mac. Номер сборки и SHA коммита могут отличаться от снимков в уже готовом PDF-отчёте: после отчёта в GitHub были добавлены инструкция и файл установки Jenkins.
+Номер сборки и SHA коммита в Jenkins относятся к текущему запуску и могут отличаться от приведённых в PDF-отчёте.
 
 ## 6. Что открыть перед записью видео
 
